@@ -1,0 +1,38 @@
+
+#container{
+    margin-top: 50px;   
+    font-size: 30px;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Змінено на центрування */
+    align-items: center; /* Додано вирівнювання по центру */
+}
+
+.gallery img {
+    width: 200px;
+    height: 150px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#lightbox img {
+    max-width: 80%; /* Змінено на максимальну ширину */
+    max-height: 80%; /* Змінено на максимальну висоту */
+    object-fit: contain;
+}

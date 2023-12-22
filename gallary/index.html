@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <title>jQuery Галерея</title>
+    <style>
+        /* Стилі для галереї */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Змінено на центрування */
+            align-items: center; /* Додано вирівнювання по центру */
+        }
+
+        .gallery img {
+            width: 200px;
+            height: 150px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        #lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #lightbox img {
+            max-width: 80%; /* Змінено на максимальну ширину */
+            max-height: 80%; /* Змінено на максимальну висоту */
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Ласкаво просимо на мій сайт!</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Головна</a></li>
+            <li><a href="../about/about.html">Про нас</a></li>
+            <li><a href="../contact/contacts.html">Контакти</a></li>
+            <li><a href="../jquery/index.html">JQuery</a></li>
+            <li><a href="#">галерея</a></li>
+            <li><a href="../media/index.html">Медіа</a></li>
+            <li><a href="../map/index.html">Карта</a></li>
+        </ul>
+    </nav>
+
+<!-- Галерея -->
+<div class="gallery">
+    <img src="https://media.tenor.com/sHC1Asu5yi0AAAAe/los-pinguinos-me-la-van-a-mascar-kawazaki.png" alt="Image 1">
+    <img src="https://memeincase.com/wp-content/uploads/2023/11/Cago-los-pinguinos-me-la-van-a-mascar.webp" alt="Image 2">
+    <img src="https://media.tenor.com/lJEjb18zYTsAAAAe/krico-gif.png" alt="Image 3">
+    <img src="https://memeincase.com/wp-content/uploads/2023/11/IMG_4271-1-300x200.png" alt="Image 4">
+    <!-- Додайте інші зображення за потребою -->
+</div>
+
+<!-- Світловий ящик (lightbox) -->
+<div id="lightbox">
+    <img src="https://i.ytimg.com/vi/neOpr_50Ffs/sddefault.jpg" alt="Lightbox Image">
+</div>
+
+<!-- Підключення jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<!-- Скрипт для галереї -->
+<script>
+    $(document).ready(function () {
+        // Клік на зображення в галереї
+        $('.gallery img').on('click', function () {
+            var imgSrc = $(this).attr('src');
+            // Відображення світлового ящика з великим зображенням
+            $('#lightbox img').attr('src', imgSrc);
+            $('#lightbox').fadeIn();
+        });
+
+        // Закриття світлового ящика при кліку на нього
+        $('#lightbox').on('click', function () {
+            $(this).fadeOut();
+        });
+    });
+</script>
+
+</body>
+</html>

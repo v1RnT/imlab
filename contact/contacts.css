@@ -1,0 +1,52 @@
+body.contacts {
+    background-color: #f9f9f9;
+}
+
+body.contacts header,
+body.contacts nav,
+body.contacts section,
+body.contacts footer {
+    background-color: #fff;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+section h2 {
+    color: #333;
+    text-align: center; 
+}
+
+section p,
+section address {
+    margin: 10px 0;
+    text-align: center;
+}
+
+section ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+section ul li {
+    margin-right: 20px;
+    display: inline;
+}
+
+section img {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    display: block;
+    border-radius: 5px;
+}
+
+body.contacts h1,
+section p,
+section address,
+section ul li {
+    font-size: 18px;
+    color: #555;
+}

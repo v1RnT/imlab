@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="index.css">
+        <title>Мій Простий Сайт</title>
+        
+        <style>
+            /* Задаємо стиль для розміщення карти на всю ширину */
+            #map {
+                width: 100%;
+                height: 600px; /* Задайте висоту карти за бажанням */
+            }
+
+            #pano {
+                margin: 20px;
+                width: 100%;
+                height: 600px; /* Задайте висоту Street View за бажанням */
+            }   
+        </style>
+
+    </head>
+    <body>
+        <header>
+            <h1>Ласкаво просимо на мій сайт!</h1>
+        </header>
+    
+        <nav>
+            <ul>
+                <li><a href="../index.html">Головна</a></li>
+                <li><a href="../about/about.html">Про нас</a></li>
+                <li><a href="../contact/contacts.html">Контакти</a></li>
+                <li><a href="../jquery/index.html">JQuery</a></li>
+                <li><a href="../gallary/index.html">Галерея</a></li>
+                <li><a href="../media/index.html">Медіа</a></li>
+                <li><a href="#">Карта</a></li>
+            </ul>
+        </nav>  
+    <h1>Моя сторінка з Google Картою</h1>
+
+     <!-- Вбудована Google Карта -->
+     <div id="map"></div>
+
+     <!-- Контейнер Street View -->
+     <div id="pano"></div>
+ 
+     <script>
+         // Ініціалізуємо Google Карту та Street View
+         function initMap() {
+             // Задаємо координати для точки на карті
+
+             var myLatLng = {lat: 48.047361, lng: 23.486028}; // Наприклад, Париж
+ 
+             // Створюємо карту та вказуємо місце, де буде відображена точка
+             var map = new google.maps.Map(document.getElementById('map'), {
+                 center: myLatLng,
+                 zoom: 17, // Задайте бажаний рівень масштабу
+                 mapTypeId: 'satellite' // Використовуємо вид з супутника
+             });
+ 
+             // Створюємо об'єкт KmlLayer для відображення 3D-обзору
+             var kmlLayer = new google.maps.KmlLayer({
+                 url: 'https://www.google.com/maps/d/kml?mid=ВАШ_КЛЮЧ', // Додайте посилання на ваш файл KML
+                 map: map
+             });
+ 
+             // Створюємо об'єкт StreetViewPanorama та вказуємо місце для Street View
+             var panorama = new google.maps.StreetViewPanorama(
+                 document.getElementById('pano'), {
+                     position: myLatLng,
+                     pov: {
+                         heading: 34, // Напрямок, де 0 - північ, 90 - схід, 180 - південь, 270 - захід
+                         pitch: 10 // Кут нахилу
+                     }
+                 }
+             );
+ 
+             // Прикріплюємо Street View до карти
+             map.setStreetView(panorama);
+         }
+     </script>
+ 
+     <!-- Підключаємо API Google Карт -->
+     <script async defer
+         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap">
+     </script>
+
+</body>
+</html>

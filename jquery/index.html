@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="index.css">
+    <title>Мій Простий Сайт</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="https://unitegallery.net/cdn/unitegallery/themes/tiles/ug-theme-tiles.js"></script>
+</head>
+
+</head>
+<body>
+    <header>
+        <h1>Ласкаво просимо на мій сайт!</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Головна</a></li>
+            <li><a href="../about/about.html">Про нас</a></li>
+            <li><a href="../contact/contacts.html">Контакти</a></li>
+            <li><a href="#">JQuery</a></li>
+            <li><a href="../gallary/index.html">Галерея</a></li>
+            <li><a href="../media/index.html">Медіа</a></li>
+            <li><a href="../map/index.html">Карта</a></li>
+        </ul>
+    </nav>  
+    <div id='container' style="margin-left: 10px;">
+        <label for="datepicker">Виберіть дату:</label>
+        <input type="text" id="datepicker">
+    </div>
+
+    <div id='container' style="margin-left: 10px;">
+        <div id="slider-container">
+            <label for="slider" id="slider-label">Виберіть число:</label>
+            <div id="slider"></div>
+        </div>
+    </div>
+
+    <div id="container" style="margin-left: 10px;">
+        <h3>Курс валют</h3>
+        <p id="usd-rate">USD: Loading...</p>
+        <p id="eur-rate">KZT: Loading...</p>
+        <p id="gbp-rate">UAH: Loading...</p>
+    </div>
+    
+
+    <script>
+        // Викликайте Datepicker для input з id "datepicker"
+        $(function() {
+            $("#datepicker").datepicker();
+        });
+    </script>
+
+    <script>
+        // Викликайте Slider для елементу з id "slider"
+        $(function() {
+            $("#slider").slider({
+                min: 0,
+                max: 100,
+                step: 1,
+                value: 50,
+                slide: function(event, ui) {
+                    // Обробник для події slide
+                    $("#slider-label").text("Вибрано число: " + ui.value);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Викликайте функцію для отримання курсу валют
+        function getCurrencyRates() {
+            $.ajax({
+                url: 'https://api.exchangerate-api.com/v4/latest/USD',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    // Оновлюємо значення курсу валют
+                    $('#usd-rate').text('USD: ' + data.rates.USD);
+                    $('#eur-rate').text('KZT: ' + data.rates.KZT);
+                    $('#gbp-rate').text('UAH: ' + data.rates.UAH);
+                },
+                error: function(error) {
+                    console.log('Error fetching currency rates:', error);
+                }
+            });
+        }
+
+        // Викликаємо функцію для отримання курсу валют при завантаженні сторінки
+        $(document).ready(function() {
+            getCurrencyRates();
+        });
+    </script>
+</body>
+</html>
